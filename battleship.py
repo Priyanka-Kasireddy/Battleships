@@ -79,10 +79,12 @@ def createShip():
     row=random.randint(1,8)
     col=random.randint(1,8)
     corner=random.randint(0,1)
+    ship=[[]]
     if corner==0:
-        return [[row-1,col],[row,col],[row+1,col]]
+        ship=[[row-1,col],[row,col],[row+1,col]]
     else: 
-        return [[row,col-1],[row,col],[row,col+1]]
+        ship=[[row,col-1],[row,col],[row,col+1]]
+    return ship
 
 
 '''
