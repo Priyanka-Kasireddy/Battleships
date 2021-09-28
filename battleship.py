@@ -70,6 +70,7 @@ def emptyGrid(rows, cols):
         grid.append(x)
     return grid
 
+
 '''
 createShip()
 Parameters: no parameters
@@ -299,5 +300,5 @@ if __name__ == "__main__":
     ## Finally, run the simulation to test it manually ##
     #  runSimulation(500, 500)
 
-    test.testCheckShip()
+    test.testCreateShip()
 
