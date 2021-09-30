@@ -103,3 +103,49 @@
 #     data["user board"]=emptyGrid(data["no.of rows"],data["no.of cols"])
 #     data["computer board"]=addShips(data["computer board"],data["computer Ships"])
 #     return data
+
+# def drawGrid(data, canvas, grid, showShips): 
+#     for row in range(data["no.of rows"]): 
+#         for col in range(data["no.of cols"]): 
+#             if grid[row][col]==SHIP_UNCLICKED: 
+#                 canvas.create_rectangle(data["cell size"]*row,data["cell size"]*col,data["cell size"]*(row+1),data["cell size"]*(col+1),fill="yellow") 
+#             else: 
+#                 canvas.create_rectangle(data["cell size"]*row,data["cell size"]*col,data["cell size"]*(row+1),data["cell size"]*(col+1),fill="blue") 
+
+
+# def makeView(data, userCanvas, compCanvas): 
+        # userCanvas=drawGrid(data,userCanvas,data["user board"],True) 
+        # compCanvas=drawGrid(data,compCanvas,data["computer board"],True)
+        
+# def drawGrid(data, canvas, grid, showShips):
+#     for row in range(10):
+#         for col in range(10):
+#             if grid[row][col]==2:
+#                 data["cell size"]=50
+#                 a=canvas.create_rectangle(data["cell size"]*row,data["cell size"]*col,data["cell size"]*(row+1),data["cell size"]*(col+1),fill="yellow") 
+#             else: 
+#                 a=canvas.create_rectangle(data["cell size"]*row,data["cell size"]*col,data["cell size"]*(row+1),data["cell size"]*(col+1),fill="blue") 
+#     return a
+# print(drawGrid(data, canvas, grid, showShips))
+
+
+# d={1,2,3,4,5,6}
+# for i in d:
+#     print(i)
+
+# d={"apple":1,"banana":2}
+# d={6:"5"}
+# d["6"]="cat"
+# print(d)
+# for i in d:
+#         print(i, d[i])
+
+# d={"apple":1, "banana":2}
+# for i in d:
+#     print(i+":"+str(d[i]))
+    
+# d={1:"a",2:"b",3:"c",4:"c"}
+# for i in d:
+#     if d[i]=="c":
+#         print(i,d[i])
+    
