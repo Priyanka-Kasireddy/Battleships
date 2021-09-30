@@ -4,12 +4,12 @@ from battleship import *
 
 def testGrid(): # Used in Week 1
     grid = [ [1] * 10 for row in range(10) ]
-    grid[0][2] = 5
-    grid[0][3] = 5
-    grid[0][4] = 5
-    grid[2][7] = 5
-    grid[3][7] = 5
-    grid[4][7] = 5
+    grid[0][2] = 2
+    grid[0][3] = 2
+    grid[0][4] = 2
+    grid[2][7] = 2
+    grid[3][7] = 2
+    grid[4][7] = 2
     return grid
     print("... done!")
 
