@@ -25,15 +25,17 @@ Parameters: dict mapping strs to values
 Returns: None
 '''
 def makeModel(data):
-    data["no.of rows"]=10
-    data["no.of cols"]=10
-    data["board size"]=500
-    data["cell size"]=50
-    data["computer Ships"]=5
-    data["user Ships"]=5
-    data["computer board"]=emptyGrid(data["no.of rows"],data["no.of cols"])
-    data["user board"]=emptyGrid(data["no.of rows"],data["no.of cols"])
-    data["computer board"]=addShips(data["computer board"],data["computer Ships"])
+    data["no_of_rows"]=10
+    data["no_of_cols"]=10
+    data["board_size"]=500
+    data["cell_size"]=50
+    data["computer_Ships"]=5
+    data["user_Ships"]=5
+    data["computer_board"]=emptyGrid(data["no_of_rows"],data["no_of_cols"])
+    # data["user_board"]=emptyGrid(data["no_of_rows"],data["no_of_cols"])
+    data["user_board"]=test.testGrid()
+    data["computer_board"]=addShips(data["computer_board"],data["computer_Ships"])
+    # data["user_board"]=addShips(data["user_board"],data["user_Ships"])
     return data
 
 
@@ -43,6 +45,8 @@ Parameters: dict mapping strs to values ; Tkinter canvas ; Tkinter canvas
 Returns: None
 '''
 def makeView(data, userCanvas, compCanvas):
+    userCanvas=drawGrid(data,userCanvas,data["user_board"],True) 
+    compCanvas=drawGrid(data,compCanvas,data["computer_board"],True)
     return
 
 
@@ -134,8 +138,13 @@ Parameters: dict mapping strs to values ; Tkinter canvas ; 2D list of ints ; boo
 Returns: None
 '''
 def drawGrid(data, canvas, grid, showShips):
+    for row in range(data["no_of_rows"]):
+        for col in range(data["no_of_cols"]):
+            if grid[row][col]==SHIP_UNCLICKED: 
+                canvas.create_rectangle(data["cell_size"]*col,data["cell_size"]*row,data["cell_size"]*(col+1),data["cell_size"]*(row+1),fill="yellow") 
+            else: 
+                canvas.create_rectangle(data["cell_size"]*col,data["cell_size"]*row,data["cell_size"]*(col+1),data["cell_size"]*(row+1),fill="blue") 
     return
-
 
 ### WEEK 2 ###
 
@@ -172,6 +181,7 @@ Parameters: dict mapping strs to values ; Tkinter canvas; 2D list of ints
 Returns: None
 '''
 def drawShip(data, canvas, ship):
+    
     return
 
 
@@ -306,8 +316,9 @@ def runSimulation(w, h):
 if __name__ == "__main__":
 
     ## Finally, run the simulation to test it manually ##
-    #  runSimulation(500, 500)
+    runSimulation(500, 500)
     # test.testEmptyGrid()
     # test.testCreateShip()
-    test.testMakeModel()
+    # test.testMakeModel()
+    # test.testGrid()
 
