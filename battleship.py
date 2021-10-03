@@ -180,8 +180,9 @@ Parameters: dict mapping strs to values ; mouse event object
 Returns: list of ints
 '''
 def getClickedCell(data, event):
-    
-    return
+    x_coordinate=int(event.x/data["cell_size"]) 
+    y_coordinate=int(event.y/data["cell_size"]) 
+    return[y_coordinate,x_coordinate]
 
 
 '''
@@ -331,4 +332,5 @@ if __name__ == "__main__":
     # test.testMakeModel()
     # test.testGrid()
     # test.testIsVertical()
-    test.testIsHorizontal()
+    # test.testIsHorizontal()
+    test.testGetClickedCell()
