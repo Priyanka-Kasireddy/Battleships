@@ -32,9 +32,10 @@ def makeModel(data):
     data["computer_Ships"]=5
     data["user_Ships"]=5
     data["computer_board"]=emptyGrid(data["no_of_rows"],data["no_of_cols"])
-    # data["user_board"]=emptyGrid(data["no_of_rows"],data["no_of_cols"])
-    data["user_board"]=test.testGrid()
+    data["user_board"]=emptyGrid(data["no_of_rows"],data["no_of_cols"])
+    # data["user_board"]=test.testGrid()
     data["computer_board"]=addShips(data["computer_board"],data["computer_Ships"])
+    data["temp_board"]=test.testShip()
     # data["user_board"]=addShips(data["user_board"],data["user_Ships"])
     return data
 
@@ -45,8 +46,9 @@ Parameters: dict mapping strs to values ; Tkinter canvas ; Tkinter canvas
 Returns: None
 '''
 def makeView(data, userCanvas, compCanvas):
-    userCanvas=drawGrid(data,userCanvas,data["user_board"],True) 
-    compCanvas=drawGrid(data,compCanvas,data["computer_board"],True)
+    drawGrid(data,userCanvas,data["user_board"],True) 
+    drawGrid(data,compCanvas,data["computer_board"],True)
+    drawShip(data,userCanvas,data["temp_board"])
     return
 
 
@@ -182,7 +184,7 @@ Returns: list of ints
 def getClickedCell(data, event):
     x_coordinate=int(event.x/data["cell_size"]) 
     y_coordinate=int(event.y/data["cell_size"]) 
-    return[y_coordinate,x_coordinate]
+    return [y_coordinate,x_coordinate]
 
 
 '''
@@ -191,7 +193,11 @@ Parameters: dict mapping strs to values ; Tkinter canvas; 2D list of ints
 Returns: None
 '''
 def drawShip(data, canvas, ship):
-    
+    a=data["cell_size"]
+    for i in ship:
+        x=i[1]*data["cell_size"]
+        y=i[0]*data["cell_size"]
+        canvas.create_rectangle(x, y, x+a, y+a ,fill="white")
     return
 
 
@@ -326,11 +332,12 @@ def runSimulation(w, h):
 if __name__ == "__main__":
 
     ## Finally, run the simulation to test it manually ##
-    # runSimulation(500, 500)
+    runSimulation(500, 500)
     # test.testEmptyGrid()
     # test.testCreateShip()
     # test.testMakeModel()
     # test.testGrid()
     # test.testIsVertical()
     # test.testIsHorizontal()
-    test.testGetClickedCell()
+    # test.testGetClickedCell()
+    # test.testDrawShip()
