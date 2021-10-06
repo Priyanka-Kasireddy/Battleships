@@ -284,11 +284,13 @@ Parameters: dict mapping strs to values ; int ; int
 Returns: None
 '''
 def runGameTurn(data, row, col):
+    l=getComputerGuess(data["user_board"])
     m=data["computer_board"]
     if m[row][col]==SHIP_CLICKED or m[row][col]==EMPTY_CLICKED:
         return
     else:
         updateBoard(data,m,row,col,"user")
+    updateBoard(data,data["user_board"],l[0],l[1],"comp")
     return
 
 
@@ -298,7 +300,14 @@ Parameters: 2D list of ints
 Returns: list of ints
 '''
 def getComputerGuess(board):
-    return
+    while True:
+        row=random.randint(0,9)
+        col=random.randint(0,9)
+        if board[row][col]==SHIP_UNCLICKED or board[row][col]==EMPTY_UNCLICKED:
+        #     pass
+        # else:
+        #     break
+            return [row,col]
 
 
 '''
@@ -376,7 +385,10 @@ def runSimulation(w, h):
 if __name__ == "__main__":
 
     ## Finally, run the simulation to test it manually ##
-    runSimulation(500, 500)
+    # test.week1Tests
+    # test.week2Tests
+    #  runSimulation(500, 500)
+    # test.testGetComputerGuess()
     # test.testUpdateBoard()
     # test.testEmptyGrid()
     # test.testCreateShip()
