@@ -38,6 +38,7 @@ def makeModel(data):
     # data["temp_board"]=test.testShip()
     data["temp_ship"]=[]
     data["userAddedship"]=0
+    data["winner"]=None
     # data["user_board"]=addShips(data["user_board"],data["user_Ships"])
     return data
 
@@ -51,6 +52,11 @@ def makeView(data, userCanvas, compCanvas):
     drawGrid(data,userCanvas,data["user_board"],True) 
     drawGrid(data,compCanvas,data["computer_board"],False)
     drawShip(data,userCanvas,data["temp_ship"])
+    drawGameOver(data, userCanvas)
+    # if data["winner"]=="user": 
+    #     drawGameOver(data,userCanvas) 
+    # elif data["winner"]=="comp": 
+    #     drawGameOver(data,compCanvas)
     return
 
 
@@ -72,7 +78,7 @@ def mousePressed(data, event, board):
     cell=getClickedCell(data,event) 
     if board=="user": 
         clickUserBoard(data,cell[0],cell[1])
-    else:
+    elif board=="comp":
         runGameTurn(data,cell[0],cell[1])
     return
 
@@ -275,6 +281,8 @@ def updateBoard(data, board, row, col, player):
             board[row][col]=SHIP_CLICKED
         elif board[row][col]==EMPTY_UNCLICKED:
             board[row][col]=EMPTY_CLICKED
+    if isGameOver(board): 
+        data["winner"]=player
     return
 
 
@@ -316,7 +324,11 @@ Parameters: 2D list of ints
 Returns: bool
 '''
 def isGameOver(board):
-    return
+    for row in range(len(board)): 
+        for col in range(len(board)): 
+            if board[row][col]==SHIP_UNCLICKED: 
+                return False 
+    return True
 
 
 '''
@@ -325,6 +337,10 @@ Parameters: dict mapping strs to values ; Tkinter canvas
 Returns: None
 '''
 def drawGameOver(data, canvas):
+    if data["winner"]=="user": 
+        canvas.create_text(250, 50, text="Congrats! You won!", fill="black", font=("Times_New_Roman 15 bold")) 
+    if data["winner"]=="comp": 
+        canvas.create_text(250, 50, text="Try Again! You Lost!", fill="black", font=("Times_New_Roman 15 bold"))
     return
 
 
@@ -387,7 +403,7 @@ if __name__ == "__main__":
     ## Finally, run the simulation to test it manually ##
     # test.week1Tests
     # test.week2Tests
-    #  runSimulation(500, 500)
+    runSimulation(500, 500)
     # test.testGetComputerGuess()
     # test.testUpdateBoard()
     # test.testEmptyGrid()
