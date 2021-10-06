@@ -39,6 +39,8 @@ def makeModel(data):
     data["temp_ship"]=[]
     data["userAddedship"]=0
     data["winner"]=None
+    data["max_turns"]=50
+    data["current_turns"]=0
     # data["user_board"]=addShips(data["user_board"],data["user_Ships"])
     return data
 
@@ -299,6 +301,9 @@ def runGameTurn(data, row, col):
     else:
         updateBoard(data,m,row,col,"user")
     updateBoard(data,data["user_board"],l[0],l[1],"comp")
+    data["current_turns"]=data["current_turns"]+1
+    if data["current_turns"]==data["max_turns"]:
+        data["winner"]="draw"
     return
 
 
@@ -338,9 +343,11 @@ Returns: None
 '''
 def drawGameOver(data, canvas):
     if data["winner"]=="user": 
-        canvas.create_text(250, 50, text="Congrats! You won!", fill="black", font=("Times_New_Roman 15 bold")) 
+        canvas.create_text(250, 50, text="Congrats! You won!", fill="black", font=("Times_New_Roman 25 bold")) 
     if data["winner"]=="comp": 
-        canvas.create_text(250, 50, text="Try Again! You Lost!", fill="black", font=("Times_New_Roman 15 bold"))
+        canvas.create_text(250, 50, text="Try Again! You Lost!", fill="black", font=("Times_New_Roman 25 bold"))
+    if data["winner"]=="draw":
+        canvas.create_text(250, 50, text="It's a Draw! Out of Moves!", fill="black", font=("Times_New_Roman 25 bold"))
     return
 
 
