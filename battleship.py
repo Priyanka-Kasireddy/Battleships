@@ -36,7 +36,7 @@ def makeModel(data):
     # data["user_board"]=test.testGrid()
     data["computer_board"]=addShips(data["computer_board"],data["computer_Ships"])
     # data["temp_board"]=test.testShip()
-    data["temp_board"]=[]
+    data["temp_ship"]=[]
     data["userAddedship"]=0
     # data["user_board"]=addShips(data["user_board"],data["user_Ships"])
     return data
@@ -50,7 +50,7 @@ Returns: None
 def makeView(data, userCanvas, compCanvas):
     drawGrid(data,userCanvas,data["user_board"],True) 
     drawGrid(data,compCanvas,data["computer_board"],True)
-    drawShip(data,userCanvas,data["temp_board"])
+    drawShip(data,userCanvas,data["temp_ship"])
     return
 
 
@@ -69,7 +69,10 @@ Parameters: dict mapping strs to values ; mouse event object ; 2D list of ints
 Returns: None
 '''
 def mousePressed(data, event, board):
-    pass
+    cell=getClickedCell(data,event) 
+    if board=="user": 
+        clickUserBoard(data,cell[0],cell[1])
+    return
 
 #### WEEK 1 ####
 
@@ -241,11 +244,11 @@ def clickUserBoard(data, row, col):
     if data["userAddedship"]==5: 
         print("You can start the game") 
         return 
-    if [row,col] not in data["temporary ship"]: 
-        data["temporary ship"].append([row,col]) 
-        if len(data["temporary ship"])==3: 
+    if [row,col] not in data["temp_ship"]: 
+        data["temp_ship"].append([row,col]) 
+        if len(data["temp_ship"])==3: 
             placeShip(data)
-    return
+        return
 
 
 ### WEEK 3 ###
