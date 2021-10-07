@@ -68,7 +68,10 @@ Parameters: dict mapping strs to values ; key event object
 Returns: None
 '''
 def keyPressed(data, event):
-    if(event):
+    # if event:
+    #     makeModel(data)
+    # return
+    if event.keysym == "Return": 
         makeModel(data)
     return
 
